@@ -1,0 +1,33 @@
+<!--
+	Name: Shi Ye
+	Date: April 25, 2018
+	Project: Document Classification
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Document Classification</title>
+	<meta charset="UTF-8">
+ 	<!-- Stylesheet-->
+ 	<link rel="stylesheet" href="{{ url_for('static',filename='classification.css') }}" type='text/css'>
+ 	<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}" type='text/css'>
+</head>
+<body>
+	<div class="title">
+		<center><h1>Text Document Classification</h1></center>
+	</div>
+	<div class='container' style="margin-bottom: 10px;">
+		<p>There are 14 classes of documents, and this application can be used to predict the class of input "text"</p>
+		<p id='notes'>Please use ',' ';' '\n' to sperate different documents, such as: <br>
+		 9db5536263d8 1c303d15eb65 ... , 9db5536263d8 ...; 9db5536263d8 ...      OR   "9db5536263d8 ...; 9db5536263d8 ..."</p>
+		<div>
+			<form class='form-incline' id='inputForm' action="/result" method="POST" style="margin-bottom: 30px;">
+				<label for="input" class="control-label" style="width: 100%;">Input Text</label>
+				<textarea id="input"  name="input" type="text" class="form-control" placeholder="Word Values" form='inputForm'></textarea>
+				<br>
+				<input id='process' type="submit"  style="width: 20%;" class='btn pull-right' value="PREDICT">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

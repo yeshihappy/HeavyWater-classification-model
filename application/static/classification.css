@@ -1,0 +1,62 @@
+/*
+    Name: Shi Ye
+	Date: April 25, 2018
+	Project: Document Classification
+*/
+
+html,body{
+	width:100%;
+	height:100%;
+}
+
+h1{
+	text-align: center;
+	color:black;
+	font-size: 40px;
+}
+
+#notes{
+	font-size: 12px;
+	color:grey;
+	text-align: left;
+}
+
+.container{
+	padding:10px;
+	width:100%;
+	height:100%;
+}
+
+.content{
+	width:50%;
+	height:100%;
+	padding: 5px;
+	align-self: left;
+	text-align: top;
+	float: left;
+	border-radius: 5px;
+}
+
+#process{
+	text-align: center;
+	padding: 10px 20px;
+	cursor: pointer;
+	border:1px solid black;
+	border-radius: 10px;
+	box-shadow: 0 5px #999;
+}
+
+#process:hover{
+	background-color: #e7e7e7;
+}
+
+#input,#result{
+	width:100%;
+	height:500px;
+	float:center;
+}
+
+.controls{
+	margin-top: 10px;
+	border:1px solid transparent;
+}

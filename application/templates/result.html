@@ -1,0 +1,46 @@
+<!--
+	Name: Shi Ye
+	Date: April 25, 2018
+	Project: Document Classification
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Text Document Classification</title>
+	<meta charset="utf-8">
+ 	<!-- Stylesheet-->
+ 	<link rel="stylesheet" href="{{ url_for('static',filename='classification.css') }}" type='text/css'>
+ 	<link rel="stylesheet" href="{{ url_for('static',filename='bootstrap.min.css') }}" type='text/css'>
+ 	<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+</head>
+<body>
+	<div class="title">
+		<center><h1>Text Document Classification</h1></center>
+	</div>
+	<div class='container' style="margin-bottom: 10px;">
+		<p>There are 14 classes of documents, and this application can be used to predict the class of input "text"</p>
+		<div class='content'>
+			<form class='form-incline' action="/index" method="GET" style="margin-bottom: 30px;">
+				<label for="input" class="control-label" style="width: 100%;">Input Text</label>
+				<textarea id="input"  type="text" class="form-control">{{ words }}</textarea>
+				<br>
+				<input id='back' type="submit"  style="width: 20%;" class='btn pull-right' value="BACK">
+			</form>
+		</div>
+		<div class='content'>
+			<label class="control-label" style="width: 100%;">Result</label>
+			<ol>
+				{% for key,value in result.items() %}
+				<div class="outputValue">
+					<li>{{ value }}</li>
+				</div>
+				{% endfor %}
+			</ol>
+		</div>
+	</div>
+</body>
+</html>
