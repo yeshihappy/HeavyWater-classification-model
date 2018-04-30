@@ -12,9 +12,9 @@ app = Flask(__name__)
 ## load model from S3
 # from boto.s3.key import Key
 # from boto.s3.connection import S3Connection
-# BUCKET_NAME= 'heavywater-shi'
+# BUCKET_NAME= 'YOURBUCKETNAME'
 # MODEL_FILE_NAME='finalized_model_svm_SGD.sav'
-# MODEL_LOCAL_PATH='D:\\Programs\\Virtual\\temp\\'+MODEL_FILE_NAME
+# MODEL_LOCAL_PATH='\temp\'+MODEL_FILE_NAME
 # bucket=S3Connection().create_bucket(BUCKET_NAME)
 # key_obj=Key(bucket)
 # key_obj.key=MODEL_FILE_NAME
@@ -46,4 +46,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run()
-    #app.run(host='0.0.0.0', port=8080)
+    #app.run(host='0.0.0.0', port=80)
