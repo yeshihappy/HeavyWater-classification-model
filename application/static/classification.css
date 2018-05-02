@@ -15,8 +15,12 @@ h1{
 	font-size: 40px;
 }
 
+p{
+	font-size: 22px;
+}
+
 #notes{
-	font-size: 12px;
+	font-size: 18px;
 	color:grey;
 	text-align: left;
 }

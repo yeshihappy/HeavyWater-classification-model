@@ -1,0 +1,81 @@
+ccopy_reg
+_reconstructor
+p0
+(csklearn.preprocessing.label
+LabelEncoder
+p1
+c__builtin__
+object
+p2
+Ntp3
+Rp4
+(dp5
+S'classes_'
+p6
+cnumpy.core.multiarray
+_reconstruct
+p7
+(cnumpy
+ndarray
+p8
+(I0
+tp9
+S'b'
+p10
+tp11
+Rp12
+(I1
+(L14L
+tp13
+cnumpy
+dtype
+p14
+(S'O8'
+p15
+I0
+I1
+tp16
+Rp17
+(I3
+S'|'
+p18
+NNNI-1
+I-1
+I63
+tp19
+bI00
+(lp20
+S'APPLICATION'
+p21
+aS'BILL'
+p22
+aS'BILL BINDER'
+p23
+aS'BINDER'
+p24
+aS'CANCELLATION NOTICE'
+p25
+aS'CHANGE ENDORSEMENT'
+p26
+aS'DECLARATION'
+p27
+aS'DELETION OF INTEREST'
+p28
+aS'EXPIRATION NOTICE'
+p29
+aS'INTENT TO CANCEL NOTICE'
+p30
+aS'NON-RENEWAL NOTICE'
+p31
+aS'POLICY CHANGE'
+p32
+aS'REINSTATEMENT NOTICE'
+p33
+aS'RETURNED CHECK'
+p34
+atp35
+bsS'_sklearn_version'
+p36
+S'0.19.1'
+p37
+sb.

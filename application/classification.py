@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request, abort, render_template
+from flask import Flask, request, render_template,url_for,redirect
 from sklearn import pipeline
-import re
+import re, string
 try:
    import cPickle as pickle
 except:
@@ -9,41 +9,39 @@ except:
 #create app
 app = Flask(__name__)
 
-## load model from S3
-# from boto.s3.key import Key
-# from boto.s3.connection import S3Connection
-# BUCKET_NAME= 'YOURBUCKETNAME'
-# MODEL_FILE_NAME='finalized_model_svm_SGD.sav'
-# MODEL_LOCAL_PATH='\temp\'+MODEL_FILE_NAME
-# bucket=S3Connection().create_bucket(BUCKET_NAME)
-# key_obj=Key(bucket)
-# key_obj.key=MODEL_FILE_NAME
-# contents = key_obj.get_contents_to_filename(MODEL_LOCAL_PATH)
-# model=pickle.load(open(MODEL_LOCAL_PATH,'rb'))
-
 # load model from local
-filename='finalized_model_svm_SGD.sav'
+filename='test_LR_test.pkl'
 model=pickle.load(open(filename,'rb'))
+# load label encoder to get text labels
+labelEncoder='labelEncoder.pkl'
+encoder=pickle.load(open(labelEncoder,'rb'))
 
-@app.route('/')
-def initial():
-  return render_template('index.html')
-
-@app.route('/index',methods=['GET'])
+@app.route('/',methods=['GET'])
 def index():
   return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
   if request.method=='POST':
-      words=str(request.form['input'])
-      words=[str(i).strip() for i in re.split(';|,|\*|\n|\t',words) if i]
-      Y_pred=model.predict(words)
-      result={}
-      for i in range(len(Y_pred)):
-        result[i]="Document Label : "+ str(Y_pred[i])
-      return render_template('result.html',words=words,result=result)
+  	words=request.form['input']
+  	if words:
+  		# split documents words by ;,\n\t
+  		temp=re.split(';|,|\n|\t',str(words).strip())
+  		# remove punctuation chars, whitespaces, and None values from the string list (time consuming)
+  		#words=[''.join(c for c in s if c not in string.punctuation).strip() for s in temp if s]
+  		# remove empty strings
+  		words=[word.strip() for word in temp if word.strip()]
+  		# if list is not empty
+  		if len(words) > 0:
+  			Y_pred=model.predict(words)   # get prediction ID
+  			Y_pred_labels=encoder.inverse_transform(Y_pred) # get predition text labels
+  			Y_pred_Pro=model.predict_proba(words)
+  			confidence={}
+  			for i in range(len(Y_pred_Pro)):
+  				confidence[i]="{:0.2f}".format(100*max(Y_pred_Pro[i])) # confidence in %
+  			return render_template('result.html',words=words,result=Y_pred_labels,confidence=confidence)
+  return redirect(url_for('index')) # redirect to index page if method == get OR error
 
 if __name__ == '__main__':
-    app.run()
-    #app.run(host='0.0.0.0', port=80)
+    #app.run(debug=True)
+    app.run(host='0.0.0.0')

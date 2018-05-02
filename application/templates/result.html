@@ -22,24 +22,24 @@ function goBack() {
 		<center><h1>Text Document Classification</h1></center>
 	</div>
 	<div class='container' style="margin-bottom: 10px;">
-		<p>There are 14 classes of documents, and this application can be used to predict the class of input "text"</p>
+		<p style="font-size:22px;>There are 14 classes of documents, and this application can be used to predict the class of input "text"</p>
 		<div class='content'>
-			<form class='form-incline' action="/index" method="GET" style="margin-bottom: 30px;">
-				<label for="input" class="control-label" style="width: 100%;">Input Text</label>
+			<form class='form-incline' action="{{ url_for('index') }}" method="GET" style="margin-bottom: 30px;">
+				<label for="input" class="control-label" style="width: 100%;font-size:18px;">Input Text: Word Values</label>
 				<textarea id="input"  type="text" class="form-control">{{ words }}</textarea>
 				<br>
 				<input id='back' type="submit"  style="width: 20%;" class='btn pull-right' value="BACK">
 			</form>
 		</div>
 		<div class='content'>
-			<label class="control-label" style="width: 100%;">Result</label>
-			<ol>
-				{% for key,value in result.items() %}
+			<label class="control-label" style="width: 100%;font-size:18px;">Output Text: Doucument Label</label>
+			<ul>
+				{% for i in range(result|length) %}
 				<div class="outputValue">
-					<li>{{ value }}</li>
+					<li>Document Label: {{ result[i] }} with confidence: {{ confidence[i] }} %</li>
 				</div>
 				{% endfor %}
-			</ol>
+			</ul>
 		</div>
 	</div>
 </body>
